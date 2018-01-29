@@ -5,26 +5,25 @@ import java.util.List;
 
 
 
-public class MatrixTraverse {
-    int matrix[][];
+public class MatrixTraverse extends Matrix implements ElementValidation  {
     int max_width, max_height, resultCost = Integer.MAX_VALUE;
      int MAX_COST;
     String msg = "";
-    String resultPath = "";
+//    String resultPath = "";
     boolean conditonBreak = false;
-
-   static int finalCost=0;
+    Path p;
+    static int finalCost=0;
     static String finalPath;
     static String isPath;
 
 
     public MatrixTraverse(int[][] a) {
-
-        this.matrix = a;
-        max_width = this.matrix[0].length;
-        max_height = this.matrix.length;
+        super(a);
+        p=new Path("");
+        max_width=getMax_width();
+        max_height=getMax_height();
         int maxcost=50;
-        if(matrix[0].length > 10)
+        if(max_width > 10)
         {
             maxcost=21;
         }
@@ -43,8 +42,8 @@ public class MatrixTraverse {
             f(i, j, 0, "");
 
         }
-       display();
-    }
+      display();
+  }
     private void display() {
         System.out.println("Final Out!!");
         if (conditonBreak) {
@@ -57,43 +56,18 @@ public class MatrixTraverse {
         }
         if(Integer.MAX_VALUE==resultCost)resultCost=0;
         System.out.println(resultCost);
-        finalCost = resultCost;
-        System.out.println("["+resultPath.replaceAll(",", " ").trim()+"]");
-       finalPath="["+resultPath.replaceAll(",", " ").trim()+"]";
+       finalCost = resultCost;
+        System.out.println("["+p.getPath().replaceAll(",", " ").trim()+"]");
+       finalPath="["+p.getPath().replaceAll(",", " ").trim()+"]";
 
 
     }
-public String matrixchk(int[][] matrixTest)
-{
-    boolean nonNumeric;
-    String val="";
-    if(matrixTest.length < 0){
-        return "invalid";
-    }
-    else{
-        int row=matrixTest.length;
-        int col=matrixTest[0].length;
-        for(int i=0;i<row;i++){
-            for(int j=0;j<col;j++){
-                nonNumeric=chkNonNumeric(""+matrixTest[i][j]);
-                if(nonNumeric==false){
-                    val="invlalid";
-                    break;
-                }
-                else{
-                    val="valid";
-                }
-            }
-        }
-        return val;
-    }
-}
 
 
 
-    public List<String> traverse(int[][] sample1){
-        new MatrixTraverse(sample1).start();
-        String validChk=matrixchk(sample1);
+    public List<String> traverse(){
+       this.start();
+        String validChk=matrixchk(getMgrid());
      if(validChk.equalsIgnoreCase("valid")) {
          System.out.println("TRAVERSE " + finalCost);
          List<String> traverseList = new ArrayList<>();
@@ -126,9 +100,9 @@ public String matrixchk(int[][] matrixTest)
 
         List<Position> nextPosiList = null;
         boolean conditionMaxCost = false;
-        if (matrix[row][col] + currentCost < MAX_COST) {
+        if (getMgrid()[row][col] + currentCost < MAX_COST) {
             currentPath += (row + 1) + ",";
-            currentCost += matrix[row][col];
+            currentCost += getMgrid()[row][col];
             nextPosiList = getAdjPosition(row, col);
 
         } else {
@@ -137,7 +111,7 @@ public String matrixchk(int[][] matrixTest)
         }
         if (nextPosiList != null) {// sort the position
             for (Position p : nextPosiList) {
-                f(p.x, p.y, currentCost, currentPath);
+                f(p.getX(), p.getY(), currentCost, currentPath);
                 System.out.println(p + " " + currentPath);
             }
         } else {
@@ -145,35 +119,40 @@ public String matrixchk(int[][] matrixTest)
             if (resultCost >= currentCost) {
                 if (!conditionMaxCost) {
                     resultCost = currentCost;
-                    resultPath = currentPath;
+                    //resultPath = currentPath;
+                    p.setPath(currentPath);
                     conditonBreak = false;
-                    System.out.println("success currentPath " + resultPath + " cost " + resultCost);
-                } else if (resultPath.length() < currentPath.length()) {
+                    System.out.println("success currentPath " + p.getPath() + " cost " + resultCost);
+                } else if (p.getPath().length() < currentPath.length()) {
                     resultCost = currentCost;
-                    resultPath = currentPath;
+                   // resultPath = currentPath;
+                    p.setPath(currentPath);
                     conditonBreak = true;
-                    System.out.println("break currentPath " + resultPath + " cost " + resultCost);
+                    System.out.println("break currentPath " + p.getPath() + " cost " + resultCost);
                 }
 
             }
             else if(currentPath.length() >= max_width*2 && conditonBreak){
                 if (!conditionMaxCost) {
                     resultCost = currentCost;
-                    resultPath = currentPath;
+                   // resultPath = currentPath;
+                    p.setPath(currentPath);
                     conditonBreak = false;
-                    System.out.println("full success currentPath " + resultPath + " cost " + resultCost);
+                    System.out.println("full success currentPath " + p.getPath() + " cost " + resultCost);
                 }
                 else {
                     resultCost = currentCost;
-                    resultPath = currentPath;
+                   // resultPath = currentPath;
+                    p.setPath(currentPath);
                     conditonBreak = true;
-                    System.out.println("full break currentPath " + resultPath + " cost " + resultCost);
+                    System.out.println("full break currentPath " + p.getPath() + " cost " + resultCost);
 
                 }
             }
-            else if(resultPath.length() < currentPath.length() && (conditionMaxCost)){
+            else if(p.getPath().length() < currentPath.length() && (conditionMaxCost)){
                 resultCost = currentCost;
-                resultPath = currentPath;
+                //resultPath = currentPath;
+                p.setPath(currentPath);
                 conditonBreak = true;
             }
 
@@ -184,7 +163,7 @@ public String matrixchk(int[][] matrixTest)
     public List<Position> getAdjPosition(int row, int col) {
         int nexCol = col + 1;
         List<Position> list = new ArrayList<>();
-        if (matrix[row].length > nexCol) {// same row next column
+        if (getMgrid()[row].length > nexCol) {// same row next column
             Position p = new Position(row, nexCol);
             list.add(p);
         } else {
@@ -210,8 +189,36 @@ public String matrixchk(int[][] matrixTest)
         return list;
     }
 
-    private boolean chkNonNumeric(String num)
+    public String matrixchk(int[][] matrixTest)
     {
+        boolean nonNumeric;
+        String val="";
+        if(matrixTest.length < 0){
+            return "invalid";
+        }
+        else{
+            int row=matrixTest.length;
+            int col=matrixTest[0].length;
+            for(int i=0;i<row;i++){
+                for(int j=0;j<col;j++){
+                    nonNumeric=chkNonNumeric(""+matrixTest[i][j]);
+                    if(nonNumeric==false){
+                        val="invlalid";
+                        break;
+                    }
+                    else{
+                        val="valid";
+                    }
+                }
+            }
+            return val;
+        }
+    }
+
+
+    @Override
+    public boolean chkNonNumeric(String num) {
+
         boolean isNumber=true;
         try{
             Integer.parseInt(num);
@@ -223,22 +230,5 @@ public String matrixchk(int[][] matrixTest)
         return isNumber;
     }
 
-
-}
-
-class Position {
-    int x;
-    int y;
-
-    public Position(int i, int j) {
-        x = i;
-        y = j;
-    }
-
-    @Override
-    public String toString() {
-
-        return "x->" + (x + 1) + " y->" + (y + 1);
-    }
 
 }

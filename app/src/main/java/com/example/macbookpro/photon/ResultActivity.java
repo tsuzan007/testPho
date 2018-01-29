@@ -19,7 +19,7 @@ public class ResultActivity extends AppCompatActivity {
 
     public void seeTraverse() {
         MatrixTraverse mat = new MatrixTraverse(TableActivity.arr);
-        List<String> trList = mat.traverse(TableActivity.arr);
+        List<String> trList = mat.traverse();
         textView_cost.setText(" " + trList.get(2) + "\n Traversecost:  " + trList.get(0) + " \n Traverse path " + trList.get(1));
     }
 }

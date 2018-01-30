@@ -1,5 +1,6 @@
 package com.example.macbookpro.photon;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -33,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
                         showAlert(MainActivity.this, "Sorry!", "Max col size is 10 because the int value can hold upto 32500 approx. only.");
                     else if (col >= 1) {
 //                        move to next activity for further processing
+                        Intent i = new Intent(MainActivity.this, TableActivity.class);
+                        i.putExtra("row", row);
+                        i.putExtra("col", col);
+                        startActivity(i);
+
                     } else if (col < 1)
                         showAlert(MainActivity.this, "No input!", "Improper value detected. Please enter a number greater than 0.");
                 } catch (NumberFormatException nfe) {

@@ -161,32 +161,37 @@ public class MatrixTraverse extends Matrix implements ElementValidation  {
     }
 
     public List<Position> getAdjPosition(int row, int col) {
-        int nexCol = col + 1;
-        List<Position> list = new ArrayList<>();
-        if (getMgrid()[row].length > nexCol) {// same row next column
-            Position p = new Position(row, nexCol);
-            list.add(p);
-        } else {
-            return null; // now nextCol then end of array.
-        }
+            List<Position> list = new ArrayList<>();
+            if(row<0 || col<0){
+                return list;
+            }
+            int nexCol = col + 1;
 
-        if (max_height > row + 1) {
-            Position p = new Position(row + 1, nexCol);
-            list.add(p);
-        } else {
-            Position p = new Position(0, nexCol);
-            list.add(p);
-        }
+            if (getMgrid()[row].length > nexCol) {// same row next column
+                Position p = new Position(row, nexCol);
+                list.add(p);
+            } else {
+                return null; // now nextCol then end of array.
+            }
 
-        if (row - 1 >= 0) {
-            Position p = new Position(row - 1, nexCol);
-            list.add(p);
-        } else {
-            Position p = new Position(max_height - 1, nexCol);
-            list.add(p);
-        }
+            if (max_height > row + 1) {
+                Position p = new Position(row + 1, nexCol);
+                list.add(p);
+            } else {
+                Position p = new Position(0, nexCol);
+                list.add(p);
+            }
 
-        return list;
+            if (row - 1 >= 0) {
+                Position p = new Position(row - 1, nexCol);
+                list.add(p);
+            } else {
+                Position p = new Position(max_height - 1, nexCol);
+                list.add(p);
+            }
+
+            return list;
+
     }
 
     public String matrixchk(int[][] matrixTest)
@@ -203,7 +208,7 @@ public class MatrixTraverse extends Matrix implements ElementValidation  {
                 for(int j=0;j<col;j++){
                     nonNumeric=chkNonNumeric(""+matrixTest[i][j]);
                     if(nonNumeric==false){
-                        val="invlalid";
+                        val="invalid";
                         break;
                     }
                     else{

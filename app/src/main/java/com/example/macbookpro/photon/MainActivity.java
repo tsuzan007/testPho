@@ -1,6 +1,5 @@
 package com.example.macbookpro.photon;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -12,19 +11,28 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    Context context;
-    EditText editTextRow, editTextCol;
-    Button b1;
-    int row = 0, col = 0;
+    private EditText editTextRow, editTextCol;
+    private Button buttonSubmit;
+    private int row = 0, col = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            row=savedInstanceState.getInt("row");
+            col=savedInstanceState.getInt("col");
+        }
         setContentView(R.layout.activity_main);
-        editTextRow = (EditText) findViewById(R.id.et1);
-        editTextCol = (EditText) findViewById(R.id.et2);
-        b1 = (Button) findViewById(R.id.b1);
-        b1.setOnClickListener(new View.OnClickListener() {
+        editTextRow =  findViewById(R.id.editText_Row);
+        editTextCol = findViewById(R.id.editText_Col);
+        buttonSubmit =  findViewById(R.id.button_Submit);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
@@ -33,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
                     if (col > 10)
                         showAlert(MainActivity.this, "Sorry!", "Max col size is 10 because the int value can hold upto 32500 approx. only.");
                     else if (col >= 1) {
-//                        move to next activity for further processing
                         Intent i = new Intent(MainActivity.this, TableActivity.class);
                         i.putExtra("row", row);
                         i.putExtra("col", col);
@@ -43,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                         showAlert(MainActivity.this, "No input!", "Improper value detected. Please enter a number greater than 0.");
                 } catch (NumberFormatException nfe) {
                     nfe.printStackTrace();
-                     showAlert(MainActivity.this, "Non numeric!", "Invalid Matrix.");
+                    showAlert(MainActivity.this, "Non numeric!", "Invalid Matrix.");
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(MainActivity.this, "Something went wrong.", Toast.LENGTH_LONG).show();
@@ -51,11 +58,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Show alert dialog
+     * @param c Context
+     * @param title Title of the message.
+     * @param message Message to display.
+     */
+
     public void showAlert(Context c, String title, String message) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(c);
         dialog.setTitle(title);
         dialog.setMessage(message);
         dialog.setNeutralButton("OK", null);
         dialog.create().show();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt("row",row);
+        outState.putInt("col",col);
+        super.onSaveInstanceState(outState);
+
+
     }
 }

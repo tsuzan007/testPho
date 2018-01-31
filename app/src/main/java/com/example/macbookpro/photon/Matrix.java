@@ -4,10 +4,8 @@ package com.example.macbookpro.photon;
  * Created by macbookpro on 1/26/18.
  */
 
-public class Matrix  {
-   private int[][] mgrid;
-   private int max_width;
-   private int max_height;
+public class Matrix {
+    private int[][] mgrid;
 
     public Matrix(int[][] mgrid) {
         this.mgrid = mgrid;

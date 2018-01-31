@@ -24,9 +24,9 @@ public class Position {
         this.y = y;
     }
 
-    public Position(int i, int j) {
-        x = i;
-        y = j;
+    public Position(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     @Override

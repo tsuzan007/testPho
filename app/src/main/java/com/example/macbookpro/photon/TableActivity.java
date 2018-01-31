@@ -20,66 +20,78 @@ import java.util.List;
 public class TableActivity extends AppCompatActivity {
 
     int row = 0, col = 0;
-    List<EditText> allETs;
-    public static int arr[][];
+    List<EditText> editTextList;
+    private int matrix[][];
+    private Button button_submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         row = getIntent().getIntExtra("row", 0);
         col = getIntent().getIntExtra("col", 0);
-        arr = new int[row][col];
+        matrix = new int[row][col];
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                arr[i][j] = 0;
+                matrix[i][j] = 0;
             }
         }
-        HorizontalScrollView svH = new HorizontalScrollView(this);
-        svH.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        HorizontalScrollView horizontalScrollView= new HorizontalScrollView(this);
+        horizontalScrollView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-        ScrollView svV = new ScrollView(this);
-        svV.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        ScrollView scrollView = new ScrollView(this);
+        scrollView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-        LinearLayout llV = new LinearLayout(this);
-        llV.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        llV.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
 
         TableLayout simple_game = new TableLayout(this);
         simple_game.setLayoutParams(new TableLayout.LayoutParams(
                 TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.MATCH_PARENT));
 
-        allETs = new ArrayList<EditText>();
+        editTextList = new ArrayList<EditText>();
         int tot = 0;
         for (int i = 0; i < row; i++) {
-            TableRow tr = new TableRow(this);
-            simple_game.addView(tr);
-            TableLayout.LayoutParams trPara = new TableLayout.LayoutParams();
-            trPara.setMargins(25, 5, 5, 5);
-            tr.setLayoutParams(trPara);
+            TableRow tableRow = new TableRow(this);
+            simple_game.addView(tableRow);
+            TableLayout.LayoutParams layoutParams = new TableLayout.LayoutParams();
+            layoutParams.setMargins(25, 5, 5, 5);
+            tableRow.setLayoutParams(layoutParams);
 
             for (int j = 0; j < col; j++) {
-                EditText iv = new EditText(this);
+                EditText editText= new EditText(this);
+                editText.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
                 tot++;
-                allETs.add(iv);
-                tr.addView(iv);
-                TableRow.LayoutParams trPara2 = new TableRow.LayoutParams();
-                trPara2.width = 150;
-                trPara2.setMargins(25, 5, 5, 5);
-                trPara2.height = ViewGroup.LayoutParams.MATCH_PARENT;
-                iv.setLayoutParams(trPara2);
+                editTextList.add(editText);
+                tableRow.addView(editText);
+                TableRow.LayoutParams tableRow_layoutParams = new TableRow.LayoutParams();
+                tableRow_layoutParams.width = 150;
+                tableRow_layoutParams.setMargins(25, 5, 5, 5);
+                tableRow_layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                editText.setLayoutParams(tableRow_layoutParams);
             }
         }
-        Button b1 = new Button(this);
-        b1.setText("Submit");
-        b1.setOnClickListener(new View.OnClickListener() {
+        button_submit = new Button(this);
+        button_submit.setText("Submit");
+        linearLayout.addView(simple_game);
+        linearLayout.addView(button_submit);
+        scrollView.addView(linearLayout);
+        horizontalScrollView.addView(scrollView);
+        setContentView(horizontalScrollView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        button_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int tot = 0, nas = 0;
                 for (int i = 0; i < row; i++) {
                     for (int j = 0; j < col; j++) {
                         try {
-                            arr[i][j] = Integer.parseInt(allETs.get(tot).getText().toString());
+                            matrix[i][j] = Integer.parseInt(editTextList.get(tot).getText().toString());
                             tot++;
                         } catch (NumberFormatException nfe) {
                             nfe.printStackTrace();
@@ -92,14 +104,14 @@ public class TableActivity extends AppCompatActivity {
                         break;
                 }
                 if (nas == 0) {
-                    startActivity(new Intent(TableActivity.this, ResultActivity.class));
+                    Intent intent=new Intent(TableActivity.this,ResultActivity.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putSerializable("matrix",matrix);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 }
             }
         });
-        llV.addView(simple_game);
-        llV.addView(b1);
-        svV.addView(llV);
-        svH.addView(svV);
-        setContentView(svH);
+
     }
 }

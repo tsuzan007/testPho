@@ -22,8 +22,6 @@ public class ResultActivity extends AppCompatActivity {
     ProgressBar progressBar;
     static int matrix[][];
     private String result;
-    private SharedPreferences.Editor editor;
-    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

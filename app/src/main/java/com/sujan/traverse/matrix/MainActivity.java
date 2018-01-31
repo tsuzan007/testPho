@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
                         showAlert(MainActivity.this, getString(R.string.alertdialog_sorry), getString(R.string.alertdialog_maxLimit_msg));
                     else if (col >= 1) {
                         Intent i = new Intent(MainActivity.this, TableActivity.class);
-                        i.putExtra(getString(R.string.key_row), row);
-                        i.putExtra(getString(R.string.key_col), col);
+                        i.putExtra("row", row);
+                        i.putExtra("col", col);
                         startActivity(i);
 
                     } else if (col < 1)

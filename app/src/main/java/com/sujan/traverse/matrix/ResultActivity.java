@@ -87,6 +87,9 @@ public class ResultActivity extends AppCompatActivity {
     }
 }
 
+/**
+ * Intent service to handle heavy calculations in background
+ */
 class TraverseService extends IntentService {
 
     /**
@@ -100,7 +103,7 @@ class TraverseService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
         MatrixTraverse mat = new MatrixTraverse(ResultActivity.matrix);
         final List<String> trList = mat.traverse();
-        Log.e("mes", "Inside intent service");
+        Log.d("mes", "Inside intent service");
         EventBus.getDefault().post(" " + trList.get(2) + "\n Traversecost:  " + trList.get(0) + " \n Traverse path " + trList.get(1));
 
 

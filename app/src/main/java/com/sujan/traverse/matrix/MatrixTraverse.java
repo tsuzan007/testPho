@@ -42,7 +42,6 @@ public class MatrixTraverse extends Matrix implements ElementValidation {
     public void startTraverse() {
         int j = 0;
         for (int i = 0; i < max_height; i++) {
-            System.out.println("row " + (i + 1) + " col " + (j + 1));
             findPath(i, j, 0, "");
 
         }
@@ -59,7 +58,7 @@ public class MatrixTraverse extends Matrix implements ElementValidation {
             System.out.println("No");
             isPath = "No";
         } else {
-            System.out.println("Yes");
+           System.out.println("Yes");
             isPath = "Yes";
         }
         if (Integer.MAX_VALUE == resultCost) resultCost = 0;
@@ -132,46 +131,37 @@ public class MatrixTraverse extends Matrix implements ElementValidation {
             conditionMaxCost = true;
 
         }
-        if (nextPosiList != null) {// sort the position
+        // sort the position
+        if (nextPosiList != null) {
             for (Position p : nextPosiList) {
                 findPath(p.getX(), p.getY(), currentCost, currentPath);
-                System.out.println(p + " " + currentPath);
             }
         } else {
             // current set Finished
             if (resultCost >= currentCost) {
                 if (!conditionMaxCost) {
                     resultCost = currentCost;
-                    //resultPath = currentPath;
                     path.setPath(currentPath);
                     conditonBreak = false;
-                    System.out.println("success currentPath " + path.getPath() + " cost " + resultCost);
                 } else if (path.getPath().length() < currentPath.length()) {
                     resultCost = currentCost;
-                    // resultPath = currentPath;
                     path.setPath(currentPath);
                     conditonBreak = true;
-                    System.out.println("break currentPath " + path.getPath() + " cost " + resultCost);
                 }
 
             } else if (currentPath.length() >= max_width * 2 && conditonBreak) {
                 if (!conditionMaxCost) {
                     resultCost = currentCost;
-                    // resultPath = currentPath;
                     path.setPath(currentPath);
                     conditonBreak = false;
-                    System.out.println("full success currentPath " + path.getPath() + " cost " + resultCost);
                 } else {
                     resultCost = currentCost;
-                    // resultPath = currentPath;
                     path.setPath(currentPath);
                     conditonBreak = true;
-                    System.out.println("full break currentPath " + path.getPath() + " cost " + resultCost);
 
                 }
             } else if (path.getPath().length() < currentPath.length() && (conditionMaxCost)) {
                 resultCost = currentCost;
-                //resultPath = currentPath;
                 path.setPath(currentPath);
                 conditonBreak = true;
             }

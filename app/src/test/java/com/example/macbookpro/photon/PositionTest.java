@@ -23,32 +23,32 @@ public class PositionTest {
     public void setX_IsSuccess() {
         Position p = new Position(1, 1);
         p.setX(10);
-        assertEquals(10,p.getX());
+        assertEquals(10, p.getX());
     }
 
     @Test
     public void setY_IsSuccess() {
         Position p = new Position(1, 1);
         p.setY(10);
-        assertEquals(10,p.getY());
+        assertEquals(10, p.getY());
     }
 
     @Test
     public void getX_ReturnsY() {
         Position p = new Position(1, 1);
-        assertEquals(1,p.getX());
+        assertEquals(1, p.getX());
     }
 
     @Test
     public void getY_ReturnsX() {
         Position p = new Position(1, 1);
-        assertEquals(1,p.getY());
+        assertEquals(1, p.getY());
     }
 
     @Test
-    public void toString_ReturnsString(){
+    public void toString_ReturnsString() {
         Position p = new Position(1, 1);
-        assertEquals("x->" + (p.getX()) + " y->" + (p.getY()),p.toString());
+        assertEquals("x->" + (p.getX()) + " y->" + (p.getY()), p.toString());
 
     }
 

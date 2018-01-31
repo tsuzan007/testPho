@@ -1,4 +1,4 @@
-package com.example.macbookpro.photon;
+package com.sujan.traverse.matrix;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -61,12 +61,11 @@ public class TableActivity extends AppCompatActivity {
 
             for (int j = 0; j < col; j++) {
                 EditText editText= new EditText(this);
-                editText.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
                 tot++;
                 editTextList.add(editText);
                 tableRow.addView(editText);
                 TableRow.LayoutParams tableRow_layoutParams = new TableRow.LayoutParams();
-                tableRow_layoutParams.width = 150;
+                tableRow_layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
                 tableRow_layoutParams.setMargins(25, 5, 5, 5);
                 tableRow_layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
                 editText.setLayoutParams(tableRow_layoutParams);

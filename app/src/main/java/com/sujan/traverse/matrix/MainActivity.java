@@ -1,4 +1,4 @@
-package com.example.macbookpro.photon;
+package com.sujan.traverse.matrix;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -39,21 +39,21 @@ public class MainActivity extends AppCompatActivity {
                     row = Integer.parseInt(editTextRow.getText().toString());
                     col = Integer.parseInt(editTextCol.getText().toString());
                     if (col > 10)
-                        showAlert(MainActivity.this, "Sorry!", "Max col size is 10 because the int value can hold upto 32500 approx. only.");
+                        showAlert(MainActivity.this, getString(R.string.alertdialog_sorry), getString(R.string.alertdialog_maxLimit_msg));
                     else if (col >= 1) {
                         Intent i = new Intent(MainActivity.this, TableActivity.class);
-                        i.putExtra("row", row);
-                        i.putExtra("col", col);
+                        i.putExtra(getString(R.string.key_row), row);
+                        i.putExtra(getString(R.string.key_col), col);
                         startActivity(i);
 
                     } else if (col < 1)
-                        showAlert(MainActivity.this, "No input!", "Improper value detected. Please enter a number greater than 0.");
+                        showAlert(MainActivity.this, getString(R.string.invalidMatrix), getString(R.string.alertdialog_invalidnum_msg));
                 } catch (NumberFormatException nfe) {
                     nfe.printStackTrace();
-                    showAlert(MainActivity.this, "Non numeric!", "Invalid Matrix.");
+                    showAlert(MainActivity.this, getString(R.string.alertdialog_notNumeric), getString(R.string.invalidMatrix));
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(MainActivity.this, "Something went wrong.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.alertdialog_error_msg), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder dialog = new AlertDialog.Builder(c);
         dialog.setTitle(title);
         dialog.setMessage(message);
-        dialog.setNeutralButton("OK", null);
+        dialog.setNeutralButton(getString(R.string.buttontext_ok), null);
         dialog.create().show();
     }
 

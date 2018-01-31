@@ -72,7 +72,7 @@ public class TableActivity extends AppCompatActivity {
             }
         }
         button_submit = new Button(this);
-        button_submit.setText("Submit");
+        button_submit.setText(getString(R.string.buttontext_submit));
         linearLayout.addView(simple_game);
         linearLayout.addView(button_submit);
         scrollView.addView(linearLayout);

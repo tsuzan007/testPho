@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.macbookpro.photon.MainActivity">
+    tools:context="com.sujan.traverse.matrix.MainActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Please enter values below:"
+        android:text="@string/text_enter_values"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +25,7 @@
         android:layout_margin="15dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
-        android:hint="Number of Rows"
+        android:hint="@string/text_num_rows"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -39,7 +39,7 @@
         android:layout_margin="15dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="20dp"
-        android:hint="Number of Columns"
+        android:hint="@string/text_num_cols"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_Row" />
@@ -54,7 +54,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="44dp"
-        android:text="Submit"
+        android:text="@string/buttontext_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_Col" />
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="Enter number of rows"
+        android:text="@string/text_enter_rows"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -76,7 +76,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="44dp"
-        android:text="Enter number of columns"
+        android:text="@string/text_enter_cols"
         app:layout_constraintEnd_toStartOf="@+id/editText_Col"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

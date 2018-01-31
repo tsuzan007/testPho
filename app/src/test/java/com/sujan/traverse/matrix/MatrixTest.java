@@ -1,8 +1,6 @@
-package com.example.macbookpro.photon;
+package com.sujan.traverse.matrix;
 
 import org.junit.Test;
-
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;

@@ -1,11 +1,9 @@
-package com.example.macbookpro.photon;
+package com.sujan.traverse.matrix;
 
 import android.app.IntentService;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -30,7 +28,6 @@ public class ResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        prefs = getSharedPreferences("MySharedPreference", MODE_PRIVATE);
         setContentView(R.layout.activity_result);
         textViewResult = findViewById(R.id.textView_Result);
         progressBar = findViewById(R.id.progressBar);
@@ -105,7 +102,7 @@ class TraverseService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
         MatrixTraverse mat = new MatrixTraverse(ResultActivity.matrix);
         final List<String> trList = mat.traverse();
-        Log.e("mes", "in the intent service");
+        Log.e("mes", "Inside intent service");
         EventBus.getDefault().post(" " + trList.get(2) + "\n Traversecost:  " + trList.get(0) + " \n Traverse path " + trList.get(1));
 
 

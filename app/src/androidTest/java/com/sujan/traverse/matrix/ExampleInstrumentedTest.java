@@ -1,4 +1,4 @@
-package com.example.macbookpro.photon;
+package com.sujan.traverse.matrix;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

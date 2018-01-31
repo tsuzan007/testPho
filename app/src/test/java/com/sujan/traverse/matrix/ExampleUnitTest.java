@@ -1,4 +1,4 @@
-package com.example.macbookpro.photon;
+package com.sujan.traverse.matrix;
 
 import org.junit.Test;
 

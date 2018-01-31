@@ -1,4 +1,4 @@
-package com.example.macbookpro.photon;
+package com.sujan.traverse.matrix;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

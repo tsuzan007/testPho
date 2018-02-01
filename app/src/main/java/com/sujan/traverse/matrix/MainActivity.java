@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         editTextCol = findViewById(R.id.editText_Col);
         buttonSubmit =  findViewById(R.id.button_Submit);
 
+
     }
 
     @Override
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     row = Integer.parseInt(editTextRow.getText().toString());
                     col = Integer.parseInt(editTextCol.getText().toString());
-                    if (col > 10)
+                    if (col > 20)
                         showAlert(MainActivity.this, getString(R.string.alertdialog_sorry), getString(R.string.alertdialog_maxLimit_msg));
                     else if (col >= 1) {
                         Intent i = new Intent(MainActivity.this, TableActivity.class);

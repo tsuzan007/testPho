@@ -19,7 +19,8 @@
         <activity android:name="com.sujan.traverse.matrix.ResultActivity">
 
         </activity>
-        <activity android:name="com.sujan.traverse.matrix.TableActivity">
+        <activity android:name="com.sujan.traverse.matrix.TableActivity"
+            android:windowSoftInputMode="adjustPan">
 
         </activity>
         <service android:name="com.sujan.traverse.matrix.TraverseService"/>

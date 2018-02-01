@@ -2,7 +2,7 @@
     <string name="app_name">photon</string>
     <string name="alertdialog_notitile">No Title</string>
     <string name="alertdialog_sorry">Sorry!</string>
-    <string name="alertdialog_maxLimit_msg">Max col size is 10 because the int value can hold upto 32500 approx. only.</string>
+    <string name="alertdialog_maxLimit_msg">Max col size is 20 because the int value can hold upto 32500 approx. only.</string>
     <string name="alertdialog_invalidnum_msg">Improper value detected. Please enter a number greater than 0.</string>
     <string name="alertdialog_notNumeric">Non numeric!</string>
     <string name="invalidMatrix">Invalid Matrix.</string>

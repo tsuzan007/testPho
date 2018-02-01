@@ -143,7 +143,7 @@ public class MatrixTraverseTest {
                 {6, 1, 8, 2, 7, 4},
                 {5, 9, 3, 9, 9, 5},
                 {8, 4, 1, 3, 2, 6},
-                {3, 7, 2, 1, 2, 3}
+                {3, 7, 2, 8, 6, 4}
         };
         MatrixTraverse mat = new MatrixTraverse(sample1);
 
@@ -153,7 +153,7 @@ public class MatrixTraverseTest {
         int trcost = Integer.parseInt(trv.get(0));
         path = trv.get(1);
         des = trv.get(2);
-        assertEquals(11, trcost);
+        assertEquals(16, trcost);
     }
 
     @Test

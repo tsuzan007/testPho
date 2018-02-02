@@ -20,7 +20,6 @@ import java.util.List;
 public class ResultActivity extends AppCompatActivity {
     TextView textViewResult;
     ProgressBar progressBar;
-    static int matrix[][];
     private String result;
 
     @Override
@@ -44,7 +43,6 @@ public class ResultActivity extends AppCompatActivity {
         super.onResume();
         if (result == null) {
             Intent i = getIntent();
-            matrix = (int[][]) i.getSerializableExtra("matrix");
             Intent serviceIntent = new Intent(this, TraverseService.class);
             startService(serviceIntent);
         } else {
@@ -101,9 +99,8 @@ class TraverseService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        MatrixTraverse mat = new MatrixTraverse(ResultActivity.matrix);
+        MatrixTraverse mat = new MatrixTraverse(TableActivity.int_matrix);
         final List<String> trList = mat.traverse();
-        Log.d("mes", "Inside intent service");
         EventBus.getDefault().post(" " + trList.get(2) + "\n Traversecost:  " + trList.get(0) + " \n Traverse path " + trList.get(1));
 
 

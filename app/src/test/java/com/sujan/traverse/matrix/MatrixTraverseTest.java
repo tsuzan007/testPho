@@ -1,5 +1,8 @@
 package com.sujan.traverse.matrix;
 
+import com.sujan.traverse.matrix.Model.MatrixTraverse;
+import com.sujan.traverse.matrix.HelperClass.Position;
+
 import org.junit.Test;
 
 import java.util.ArrayList;

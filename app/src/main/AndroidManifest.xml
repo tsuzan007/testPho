@@ -9,21 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.sujan.traverse.matrix.MainActivity">
+        <activity android:name="com.sujan.traverse.matrix.View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.sujan.traverse.matrix.ResultActivity">
+        <activity android:name="com.sujan.traverse.matrix.View.ResultActivity">
 
         </activity>
-        <activity android:name="com.sujan.traverse.matrix.TableActivity"
+        <activity android:name="com.sujan.traverse.matrix.View.TableActivity"
             android:windowSoftInputMode="adjustPan">
 
         </activity>
-        <service android:name="com.sujan.traverse.matrix.TraverseService"/>
+        <service android:name="com.sujan.traverse.matrix.View.TraverseService"/>
     </application>
 
 </manifest>

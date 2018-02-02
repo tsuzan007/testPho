@@ -1,4 +1,9 @@
-package com.sujan.traverse.matrix;
+package com.sujan.traverse.matrix.Model;
+
+import com.sujan.traverse.matrix.HelperClass.ElementValidation;
+import com.sujan.traverse.matrix.HelperClass.Matrix;
+import com.sujan.traverse.matrix.HelperClass.Path;
+import com.sujan.traverse.matrix.HelperClass.Position;
 
 import java.util.ArrayList;
 import java.util.List;

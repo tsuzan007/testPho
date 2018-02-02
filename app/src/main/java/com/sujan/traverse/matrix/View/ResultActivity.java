@@ -1,15 +1,16 @@
-package com.sujan.traverse.matrix;
+package com.sujan.traverse.matrix.View;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.sujan.traverse.matrix.Model.MatrixTraverse;
+import com.sujan.traverse.matrix.R;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

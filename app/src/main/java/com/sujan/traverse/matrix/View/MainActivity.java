@@ -1,4 +1,4 @@
-package com.sujan.traverse.matrix;
+package com.sujan.traverse.matrix.View;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.sujan.traverse.matrix.R;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editTextRow, editTextCol;

@@ -1,5 +1,7 @@
 package com.sujan.traverse.matrix;
 
+import com.sujan.traverse.matrix.HelperClass.Matrix;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

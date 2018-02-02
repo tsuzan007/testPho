@@ -1,4 +1,4 @@
-package com.sujan.traverse.matrix;
+package com.sujan.traverse.matrix.HelperClass;
 
 /**
  * Created by macbookpro on 1/26/18.

@@ -2,6 +2,8 @@ package com.sujan.traverse.matrix;
 
 
 import android.content.Intent;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,19 +19,22 @@ import android.widget.TableRow;
 import android.widget.Toast;
 
 import com.jakewharton.rxbinding2.widget.RxTextView;
+import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
+import io.reactivex.Scheduler;
 import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class TableActivity extends AppCompatActivity {
 
     int row = 0, col = 0;
     List<EditText> editTextList;
-    private int matrix[][];
+    private String matrix[][];
+    public static int int_matrix[][];
     private Button button_submit;
     private HorizontalScrollView horizontalScrollView;
     private ScrollView scrollView;
@@ -43,9 +48,11 @@ public class TableActivity extends AppCompatActivity {
         row = getIntent().getIntExtra("row", 0);
         col = getIntent().getIntExtra("col", 0);
         if (savedInstanceState == null) {
-            initMatrix();
+            matrix = new String[row][col];
+            int_matrix=new int[row][col];
+            initMatrices();
         } else {
-            matrix = (int[][]) savedInstanceState.getSerializable("matrix");
+            matrix = (String[][]) savedInstanceState.getSerializable("matrix");
         }
         createLayout();
         createTable();
@@ -57,39 +64,40 @@ public class TableActivity extends AppCompatActivity {
             int number = 0;
             for (int i = 0; i < row; i++) {
                 for (int j = 0; j < col; j++) {
-                    int value = matrix[i][j];
-                    if (value == 0) {
+                    String value = matrix[i][j];
+                    try {
+                        editTextList.get(number).setText(value);
+                    } catch (NullPointerException e) {
                         editTextList.get(number).setText("");
-
-                    } else {
-                        editTextList.get(number).setText(matrix[i][j] + "");
 
                     }
                     number++;
+
                 }
+
             }
 
+
         }
-
-
     }
 
-    /**
-     * Initialize matrix with 0's.
-     */
-    protected void initMatrix() {
-        matrix = new int[row][col];
+    public void initMatrices(){
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                matrix[i][j] = 0;
+                matrix[i][j]="";
+                int_matrix[i][j]=0;
+
+
             }
         }
 
     }
+
 
     /**
      * Create layout that holds table view
      */
+
     protected void createLayout() {
         horizontalScrollView = new HorizontalScrollView(this);
         horizontalScrollView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -122,14 +130,17 @@ public class TableActivity extends AppCompatActivity {
             for (int j = 0; j < col; j++) {
                 final EditText editText = new EditText(this);
                 editText.setTag(new Position(i, j));
-                RxTextView.textChanges(editText).subscribe(new Consumer<CharSequence>() {
+                RxTextView.textChanges(editText).observeOn(Schedulers.io()).subscribe(new Consumer<CharSequence>() {
                     @Override
                     public void accept(CharSequence charSequence) throws Exception {
-                        Log.e(".....", editText.getTag() + "");
-                        if (!editText.getText().toString().isEmpty()) {
                             Position position = (Position) editText.getTag();
-                            matrix[position.getX()][position.getY()] = Integer.parseInt(editText.getText().toString());
-                        }
+                            matrix[position.getX()][position.getY()] = charSequence.toString();
+                            try{
+                                Integer.parseInt(charSequence.toString());
+                                editText.getBackground().clearColorFilter();
+                            }catch (NumberFormatException n){
+                                editText.getBackground().setColorFilter(getColor(R.color.red),PorterDuff.Mode.SRC);
+                            }
                     }
                 });
                 editTextList.add(editText);
@@ -144,7 +155,7 @@ public class TableActivity extends AppCompatActivity {
 
     }
 
-    protected void bindViews(){
+    protected void bindViews() {
         linearLayout.addView(simple_game);
         linearLayout.addView(button_submit);
         scrollView.addView(linearLayout);
@@ -159,16 +170,14 @@ public class TableActivity extends AppCompatActivity {
         button_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int number = 0;
                 boolean error = false;
                 for (int i = 0; i < row; i++) {
                     for (int j = 0; j < col; j++) {
                         try {
-                            matrix[i][j] = Integer.parseInt(editTextList.get(number).getText().toString());
-                            number++;
+                            int_matrix[i][j] = Integer.parseInt(matrix[i][j]);
                         } catch (NumberFormatException nfe) {
                             nfe.printStackTrace();
-                            Toast.makeText(TableActivity.this, "Invalid number", Toast.LENGTH_LONG).show();
+                            Toast.makeText(TableActivity.this, "Invalid Matrix", Toast.LENGTH_SHORT).show();
                             error = true;
                             break;
                         }
@@ -179,9 +188,6 @@ public class TableActivity extends AppCompatActivity {
 
                 if (error == false) {
                     Intent intent = new Intent(TableActivity.this, ResultActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("matrix", matrix);
-                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
             }
@@ -196,4 +202,5 @@ public class TableActivity extends AppCompatActivity {
         outState.putSerializable("matrix", matrix);
         super.onSaveInstanceState(outState);
     }
+
 }

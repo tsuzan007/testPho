@@ -21,15 +21,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
-            row=savedInstanceState.getInt("row");
-            col=savedInstanceState.getInt("col");
+            row = savedInstanceState.getInt("row");
+            col = savedInstanceState.getInt("col");
         }
         setContentView(R.layout.activity_main);
-        editTextRow =  findViewById(R.id.editText_Row);
+        editTextRow = findViewById(R.id.editText_Row);
         editTextCol = findViewById(R.id.editText_Col);
-        buttonSubmit =  findViewById(R.id.button_Submit);
-
-
+        buttonSubmit = findViewById(R.id.button_Submit);
     }
 
     @Override
@@ -64,8 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Show alert dialog
-     * @param c Context
-     * @param title Title of the message.
+     *
+     * @param c       Context
+     * @param title   Title of the message.
      * @param message Message to display.
      */
 
@@ -79,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt("row",row);
-        outState.putInt("col",col);
+        outState.putInt("row", row);
+        outState.putInt("col", col);
         super.onSaveInstanceState(outState);
 
 

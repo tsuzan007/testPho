@@ -4,6 +4,7 @@ package com.sujan.traverse.matrix;
 import android.content.Intent;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -130,7 +132,7 @@ public class TableActivity extends AppCompatActivity {
             for (int j = 0; j < col; j++) {
                 final EditText editText = new EditText(this);
                 editText.setTag(new Position(i, j));
-                RxTextView.textChanges(editText).observeOn(Schedulers.io()).subscribe(new Consumer<CharSequence>() {
+                RxTextView.textChanges(editText).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<CharSequence>() {
                     @Override
                     public void accept(CharSequence charSequence) throws Exception {
                             Position position = (Position) editText.getTag();
@@ -139,7 +141,11 @@ public class TableActivity extends AppCompatActivity {
                                 Integer.parseInt(charSequence.toString());
                                 editText.getBackground().clearColorFilter();
                             }catch (NumberFormatException n){
-                                editText.getBackground().setColorFilter(getColor(R.color.red),PorterDuff.Mode.SRC);
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                    editText.getBackground().setColorFilter(getColor(R.color.red),PorterDuff.Mode.SRC);
+                                }else {
+                                    editText.getBackground().setColorFilter(getResources().getColor(R.color.red),PorterDuff.Mode.SRC);
+                                }
                             }
                     }
                 });

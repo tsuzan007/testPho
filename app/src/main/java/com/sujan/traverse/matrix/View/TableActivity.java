@@ -4,6 +4,7 @@ package com.sujan.traverse.matrix.View;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -130,7 +131,12 @@ public class TableActivity extends AppCompatActivity{
                             Integer.parseInt(charSequence.toString());
                             editText.getBackground().clearColorFilter();
                         } catch (NumberFormatException n) {
-                            editText.getBackground().setColorFilter(getColor(R.color.red), PorterDuff.Mode.SRC);
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                editText.getBackground().setColorFilter(getColor(R.color.red), PorterDuff.Mode.SRC);
+                            }
+                            else{
+                                editText.getBackground().setColorFilter(getResources().getColor(R.color.red), PorterDuff.Mode.SRC);
+                            }
                         }
                     }
                 });

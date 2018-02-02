@@ -23,7 +23,7 @@
             android:windowSoftInputMode="adjustPan">
 
         </activity>
-        <service android:name="com.sujan.traverse.matrix.View.TraverseService"/>
+        <service android:name="com.sujan.traverse.matrix.Model.TraverseService"/>
     </application>
 
 </manifest>

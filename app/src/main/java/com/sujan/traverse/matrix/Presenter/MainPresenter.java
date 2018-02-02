@@ -21,7 +21,6 @@ public class MainPresenter implements PresenterOps {
                 try {
                     int_matrix[i][j] = Integer.parseInt(matrix[i][j]);
                 } catch (NumberFormatException nfe) {
-                    nfe.printStackTrace();
                     error = true;
                     break;
                 }

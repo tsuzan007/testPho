@@ -6,7 +6,7 @@ package com.sujan.traverse.matrix;
 
 public class Path implements PathCost {
     private  String path;
-    private int cost;
+    private int cost=0;
 
     public Path(String path) {
         this.path = path;

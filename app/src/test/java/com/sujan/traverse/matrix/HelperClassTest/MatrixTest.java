@@ -1,4 +1,4 @@
-package com.sujan.traverse.matrix;
+package com.sujan.traverse.matrix.HelperClassTest;
 
 import com.sujan.traverse.matrix.HelperClass.Matrix;
 

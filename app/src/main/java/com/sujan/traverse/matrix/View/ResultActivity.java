@@ -1,22 +1,18 @@
 package com.sujan.traverse.matrix.View;
 
-import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.sujan.traverse.matrix.Model.MatrixTraverse;
+import com.sujan.traverse.matrix.Model.TraverseService;
 import com.sujan.traverse.matrix.R;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import java.util.List;
 
 public class ResultActivity extends AppCompatActivity {
     TextView textViewResult;
@@ -83,28 +79,6 @@ public class ResultActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         result = savedInstanceState.getString("result");
         super.onRestoreInstanceState(savedInstanceState);
-    }
-}
-
-/**
- * Intent service to handle heavy calculations in background
- */
-class TraverseService extends IntentService {
-
-    /**
-     * Creates an IntentService.  Invoked by your subclass's constructor.
-     */
-    public TraverseService() {
-        super("This is intent service");
-    }
-
-    @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
-        MatrixTraverse mat = new MatrixTraverse(TableActivity.int_matrix);
-        final List<String> trList = mat.traverse();
-        EventBus.getDefault().post(" " + trList.get(2) + "\n Traversecost:  " + trList.get(0) + " \n Traverse path " + trList.get(1));
-
-
     }
 }
 

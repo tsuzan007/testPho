@@ -63,7 +63,7 @@ public class MatrixTraverse extends Matrix implements ElementValidation {
             System.out.println("No");
             isPath = "No";
         } else {
-           System.out.println("Yes");
+            System.out.println("Yes");
             isPath = "Yes";
         }
         if (Integer.MAX_VALUE == resultCost) resultCost = 0;

@@ -22,7 +22,6 @@ import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.sujan.traverse.matrix.HelperClass.Position;
 import com.sujan.traverse.matrix.Model.MyViewModel;
 import com.sujan.traverse.matrix.Presenter.MainPresenter;
-import com.sujan.traverse.matrix.Presenter.ViewOps;
 import com.sujan.traverse.matrix.R;
 
 import java.util.ArrayList;
@@ -30,7 +29,6 @@ import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 
 public class TableActivity extends AppCompatActivity{
@@ -93,12 +91,11 @@ public class TableActivity extends AppCompatActivity{
     protected void createLayout() {
         horizontalScrollView = new HorizontalScrollView(this);
         horizontalScrollView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-
+        horizontalScrollView.setFillViewport(true);
         scrollView = new ScrollView(this);
         scrollView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-
         linearLayout = new LinearLayout(this);
-        linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
 
@@ -115,9 +112,10 @@ public class TableActivity extends AppCompatActivity{
         editTextList = new ArrayList<EditText>();
         for (int i = 0; i < MainPresenter.row; i++) {
             TableRow tableRow = new TableRow(this);
+            tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.MATCH_PARENT));
             simple_game.addView(tableRow);
             TableLayout.LayoutParams layoutParams = new TableLayout.LayoutParams();
-            layoutParams.setMargins(25, 5, 5, 5);
+            layoutParams.setMargins(25, 5, 25, 5);
             tableRow.setLayoutParams(layoutParams);
             for (int j = 0; j < MainPresenter.col; j++) {
                 final EditText editText = new EditText(this);
@@ -142,11 +140,6 @@ public class TableActivity extends AppCompatActivity{
                 });
                 editTextList.add(editText);
                 tableRow.addView(editText);
-                TableRow.LayoutParams tableRow_layoutParams = new TableRow.LayoutParams();
-                tableRow_layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
-                tableRow_layoutParams.setMargins(25, 5, 5, 5);
-                tableRow_layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
-                editText.setLayoutParams(tableRow_layoutParams);
             }
         }
 
@@ -156,7 +149,7 @@ public class TableActivity extends AppCompatActivity{
         linearLayout.addView(simple_game);
         linearLayout.addView(button_submit);
         scrollView.addView(linearLayout);
-        horizontalScrollView.addView(scrollView);
+       horizontalScrollView.addView(scrollView);
 
     }
 

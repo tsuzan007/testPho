@@ -8,10 +8,42 @@ import com.sujan.traverse.matrix.HelperClass.Position;
  */
 
 public class MainPresenter implements PresenterOps {
-    public static String matrix[][];
-    public static int int_matrix[][];
-    public static int row = 0;
-    public static int col = 0;
+    private   String matrix[][];
+    private   int int_matrix[][];
+    private   int row = 0;
+    private   int col = 0;
+
+    public String[][] getMatrix() {
+        return matrix;
+    }
+
+    public void setMatrix(String[][] matrix) {
+        this.matrix = matrix;
+    }
+
+    public int[][] getInt_matrix() {
+        return int_matrix;
+    }
+
+    public void setInt_matrix(int[][] int_matrix) {
+        this.int_matrix = int_matrix;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
+    }
 
     @Override
     public boolean onClick_submit() {
@@ -34,15 +66,17 @@ public class MainPresenter implements PresenterOps {
 
     @Override
     public void onTableTextChange(Position p, CharSequence c) {
-        MainPresenter.matrix[p.getX()][p.getY()] = c.toString();
+        matrix[p.getX()][p.getY()] = c.toString();
     }
 
     @Override
     public void initMatrices() {
-        for (int i = 0; i < MainPresenter.row; i++) {
-            for (int j = 0; j < MainPresenter.col; j++) {
-                MainPresenter.matrix[i][j] = "";
-                MainPresenter.int_matrix[i][j] = 0;
+        matrix = new String[this.row][this.col];
+        int_matrix = new int[this.row][this.col];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                matrix[i][j] = "";
+                int_matrix[i][j] = 0;
 
 
             }

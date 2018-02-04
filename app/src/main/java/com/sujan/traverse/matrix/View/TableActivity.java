@@ -48,14 +48,13 @@ public class TableActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         myViewModel= ViewModelProviders.of(this).get(MyViewModel.class);
         mainPresenter=myViewModel.getMainPresenter();
-        MainPresenter.row = getIntent().getIntExtra("row", 0);
-        MainPresenter.col = getIntent().getIntExtra("col", 0);
+        mainPresenter.setRow(getIntent().getIntExtra("row", 0));
+        mainPresenter.setCol(getIntent().getIntExtra("col", 0));
         if (savedInstanceState == null) {
-            MainPresenter.matrix = new String[MainPresenter.row][MainPresenter.col];
-            MainPresenter.int_matrix = new int[MainPresenter.row][MainPresenter.col];
+
             mainPresenter.initMatrices();
         } else {
-            MainPresenter.matrix = (String[][]) savedInstanceState.getSerializable("matrix");
+            mainPresenter.setMatrix((String[][]) savedInstanceState.getSerializable("matrix"));
         }
         createLayout();
         createTable();
@@ -65,9 +64,9 @@ public class TableActivity extends AppCompatActivity{
         setContentView(horizontalScrollView);
         if (savedInstanceState != null) {
             int number = 0;
-            for (int i = 0; i < MainPresenter.row; i++) {
-                for (int j = 0; j < MainPresenter.col; j++) {
-                    String value = MainPresenter.matrix[i][j];
+            for (int i = 0; i < mainPresenter.getRow(); i++) {
+                for (int j = 0; j < mainPresenter.getCol(); j++) {
+                    String value = mainPresenter.getMatrix()[i][j];
                     try {
                         editTextList.get(number).setText(value);
                     } catch (NullPointerException e) {
@@ -110,14 +109,14 @@ public class TableActivity extends AppCompatActivity{
                 TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.MATCH_PARENT));
         editTextList = new ArrayList<EditText>();
-        for (int i = 0; i < MainPresenter.row; i++) {
+        for (int i = 0; i < mainPresenter.getRow(); i++) {
             TableRow tableRow = new TableRow(this);
             tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.MATCH_PARENT));
             simple_game.addView(tableRow);
             TableLayout.LayoutParams layoutParams = new TableLayout.LayoutParams();
             layoutParams.setMargins(25, 5, 25, 5);
             tableRow.setLayoutParams(layoutParams);
-            for (int j = 0; j < MainPresenter.col; j++) {
+            for (int j = 0; j < mainPresenter.getCol(); j++) {
                 final EditText editText = new EditText(this);
                 editText.setTag(new Position(i, j));
                 RxTextView.textChanges(editText).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<CharSequence>() {
@@ -164,6 +163,7 @@ public class TableActivity extends AppCompatActivity{
                     Toast.makeText(TableActivity.this, "Invalid Matrix", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(TableActivity.this, ResultActivity.class);
+                    intent.putExtra("matrix",mainPresenter.getInt_matrix());
                     startActivity(intent);
                 }
             }
@@ -175,7 +175,7 @@ public class TableActivity extends AppCompatActivity{
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable("matrix", MainPresenter.matrix);
+        outState.putSerializable("matrix", mainPresenter.getMatrix());
         super.onSaveInstanceState(outState);
     }
 

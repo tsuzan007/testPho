@@ -24,7 +24,8 @@ public class TraverseService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        MatrixTraverse mat = new MatrixTraverse(MainPresenter.int_matrix);
+        int[][] matrix=(int[][])intent.getSerializableExtra("matrix");
+        MatrixTraverse mat = new MatrixTraverse(matrix);
         final List<String> trList = mat.traverse();
         EventBus.getDefault().post(" " + trList.get(2) + "\n Traversecost:  " + trList.get(0) + " \n Traverse path " + trList.get(1));
 

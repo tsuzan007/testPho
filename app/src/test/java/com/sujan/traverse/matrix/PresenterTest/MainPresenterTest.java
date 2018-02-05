@@ -22,20 +22,20 @@ public class MainPresenterTest {
 
     @Test
     public void onClick_submit_ReturnsTrue(){
-        MainPresenter.int_matrix=new int[2][2];
-        MainPresenter.row=2;
-        MainPresenter.col=2;
-        MainPresenter.matrix=new String[][]{{"1","2"},{"3","4"}};
         MainPresenter mainPresenter=new MainPresenter();
+        mainPresenter.setInt_matrix(new int[2][2]);
+        mainPresenter.setRow(2);
+        mainPresenter.setCol(2);
+        mainPresenter.setMatrix(new String[][]{{"1","2"},{"3","4"}});
         assertFalse(mainPresenter.onClick_submit());
     }
     @Test
     public void onClick_submit_ReturnsFalse(){
-        MainPresenter.int_matrix=new int[2][2];
-        MainPresenter.row=2;
-        MainPresenter.col=2;
-        MainPresenter.matrix=new String[][]{{"a","b"},{"c","d"}};
         MainPresenter mainPresenter=new MainPresenter();
+        mainPresenter.setInt_matrix(new int[2][2]);
+        mainPresenter.setRow(2);
+        mainPresenter.setCol(2);
+        mainPresenter.setMatrix(new String[][]{{"a","b"},{"c","d"}});
         mainPresenter.onClick_submit();
         assertTrue(mainPresenter.onClick_submit());
 
@@ -43,13 +43,14 @@ public class MainPresenterTest {
 
     @Test
     public void onTableTextChange_IsSuccess(){
-        MainPresenter.int_matrix=new int[2][2];
-        MainPresenter.row=2;
-        MainPresenter.col=2;
-        MainPresenter.matrix=new String[][]{{"1","2"},{"3","4"}};
         MainPresenter mainPresenter=new MainPresenter();
+        mainPresenter.setInt_matrix(new int[2][2]);
+        mainPresenter.setRow(2);
+        mainPresenter.setCol(2);
+        mainPresenter.setMatrix(new String[][]{{"1","2"},{"3","4"}});
+
         mainPresenter.onTableTextChange(new Position(0,0),"10");
-        assertEquals("10",MainPresenter.matrix[0][0]);
+        assertEquals("10",mainPresenter.getMatrix()[0][0]);
 
 
 
@@ -57,17 +58,18 @@ public class MainPresenterTest {
     }
     @Test
     public void initMatrices_IsSuccess(){
-        MainPresenter.int_matrix=new int[2][2];
-        MainPresenter.matrix=new String[2][2];
-        MainPresenter.row=2;
-        MainPresenter.col=2;
+        MainPresenter mainPresenter=new MainPresenter();
+        mainPresenter.setInt_matrix(new int[2][2]);
+        mainPresenter.setMatrix(new String[2][2]);
+        mainPresenter.setRow(2);
+        mainPresenter.setCol(2);
 
         int[][] TestMatrix=new int[][]{{0,0},{0,0}};
         String[][] Str_TestMatrix=new String[][]{{"",""},{"",""}};
-        MainPresenter mainPresenter=new MainPresenter();
+
         mainPresenter.initMatrices();
-        assertEquals(MainPresenter.int_matrix,TestMatrix);
-        assertEquals(MainPresenter.matrix,Str_TestMatrix);
+        assertEquals(mainPresenter.getInt_matrix(),TestMatrix);
+        assertEquals(mainPresenter.getMatrix(),Str_TestMatrix);
 
 
     }

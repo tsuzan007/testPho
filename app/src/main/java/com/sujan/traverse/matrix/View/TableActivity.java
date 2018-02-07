@@ -59,7 +59,7 @@ public class TableActivity extends AppCompatActivity{
         createLayout();
         createTable();
         button_submit = new Button(this);
-        button_submit.setText(getString(R.string.buttontext_submit));
+        button_submit.setText(getString(R.string.buttontext_calculate));
         bindViews();
         setContentView(horizontalScrollView);
         if (savedInstanceState != null) {
@@ -109,6 +109,7 @@ public class TableActivity extends AppCompatActivity{
                 TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.MATCH_PARENT));
         editTextList = new ArrayList<EditText>();
+        int count=0;
         for (int i = 0; i < mainPresenter.getRow(); i++) {
             TableRow tableRow = new TableRow(this);
             tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.MATCH_PARENT));
@@ -119,6 +120,8 @@ public class TableActivity extends AppCompatActivity{
             for (int j = 0; j < mainPresenter.getCol(); j++) {
                 final EditText editText = new EditText(this);
                 editText.setTag(new Position(i, j));
+                editText.setId(count);
+                count=count+1;
                 RxTextView.textChanges(editText).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<CharSequence>() {
                     @Override
                     public void accept(CharSequence charSequence) throws Exception {
@@ -160,7 +163,7 @@ public class TableActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 if (mainPresenter.onClick_submit()) {
-                    Toast.makeText(TableActivity.this, "Invalid Matrix", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TableActivity.this, "Invalid Matrix.", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(TableActivity.this, ResultActivity.class);
                     intent.putExtra("matrix",mainPresenter.getInt_matrix());

@@ -1,8 +1,11 @@
 package com.sujan.traverse.matrix.ModelTest;
 
+import com.sujan.traverse.matrix.HelperClass.ElementValidation;
+import com.sujan.traverse.matrix.HelperClass.Matrix;
 import com.sujan.traverse.matrix.Model.MatrixTraverse;
 import com.sujan.traverse.matrix.HelperClass.Position;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,6 +16,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 public class MatrixTraverseTest {
 
@@ -27,6 +31,7 @@ public class MatrixTraverseTest {
     @Test
     public void MatrixTraverseConstruct_NotNull() {
 
+
         MatrixTraverse mat = new MatrixTraverse(sample1);
         assertNotNull(mat);
     }
@@ -39,12 +44,6 @@ public class MatrixTraverseTest {
 
     @Test
     public void getAdjPosition_ReturnsPositionList() {
-        int sample1[][] = {{3, 4, 1, 2, 8, 6},
-                {6, 1, 8, 2, 7, 4},
-                {5, 9, 3, 9, 9, 5},
-                {8, 4, 1, 3, 2, 6},
-                {3, 7, 2, 8, 6, 4}
-        };
         List<Position> testdata = new ArrayList<>();
         testdata.add(new Position(1, 2));
         testdata.add(new Position(2, 2));
@@ -120,12 +119,6 @@ public class MatrixTraverseTest {
         String cost;
         String path;
         String des;
-        int sample1[][] = {{3, 4, 1, 2, 8, 6},
-                {6, 1, 8, 2, 7, 4},
-                {5, 9, 3, 9, 9, 5},
-                {8, 4, 1, 3, 2, 6},
-                {3, 7, 2, 8, 6, 4}
-        };
         MatrixTraverse mat = new MatrixTraverse(sample1);
 
 

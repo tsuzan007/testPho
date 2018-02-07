@@ -3,6 +3,7 @@ package com.sujan.traverse.matrix.PresenterTest;
 import com.sujan.traverse.matrix.HelperClass.Position;
 import com.sujan.traverse.matrix.Presenter.MainPresenter;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -16,25 +17,26 @@ import static org.junit.Assert.assertTrue;
  */
 
 public class MainPresenterTest {
+    MainPresenter mainPresenter;
 
+    @Before
+    public void initMainPresenter(){
+        mainPresenter=new MainPresenter();
+        mainPresenter.setInt_matrix(new int[2][2]);
+        mainPresenter.setRow(2);
+        mainPresenter.setCol(2);
 
+    }
 
 
     @Test
     public void onClick_submit_ReturnsTrue(){
-        MainPresenter mainPresenter=new MainPresenter();
-        mainPresenter.setInt_matrix(new int[2][2]);
-        mainPresenter.setRow(2);
-        mainPresenter.setCol(2);
+
         mainPresenter.setMatrix(new String[][]{{"1","2"},{"3","4"}});
         assertFalse(mainPresenter.onClick_submit());
     }
     @Test
     public void onClick_submit_ReturnsFalse(){
-        MainPresenter mainPresenter=new MainPresenter();
-        mainPresenter.setInt_matrix(new int[2][2]);
-        mainPresenter.setRow(2);
-        mainPresenter.setCol(2);
         mainPresenter.setMatrix(new String[][]{{"a","b"},{"c","d"}});
         mainPresenter.onClick_submit();
         assertTrue(mainPresenter.onClick_submit());
@@ -43,10 +45,6 @@ public class MainPresenterTest {
 
     @Test
     public void onTableTextChange_IsSuccess(){
-        MainPresenter mainPresenter=new MainPresenter();
-        mainPresenter.setInt_matrix(new int[2][2]);
-        mainPresenter.setRow(2);
-        mainPresenter.setCol(2);
         mainPresenter.setMatrix(new String[][]{{"1","2"},{"3","4"}});
 
         mainPresenter.onTableTextChange(new Position(0,0),"10");
@@ -58,11 +56,7 @@ public class MainPresenterTest {
     }
     @Test
     public void initMatrices_IsSuccess(){
-        MainPresenter mainPresenter=new MainPresenter();
-        mainPresenter.setInt_matrix(new int[2][2]);
         mainPresenter.setMatrix(new String[2][2]);
-        mainPresenter.setRow(2);
-        mainPresenter.setCol(2);
 
         int[][] TestMatrix=new int[][]{{0,0},{0,0}};
         String[][] Str_TestMatrix=new String[][]{{"",""},{"",""}};

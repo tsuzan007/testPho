@@ -31,23 +31,23 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 
 
-public class TableActivity extends AppCompatActivity{
+public class TableActivity extends AppCompatActivity {
 
 
     List<EditText> editTextList;
     MainPresenter mainPresenter;
+    MyViewModel myViewModel;
     private Button button_submit;
     private HorizontalScrollView horizontalScrollView;
     private ScrollView scrollView;
     private LinearLayout linearLayout;
     private TableLayout simple_game;
-    MyViewModel myViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        myViewModel= ViewModelProviders.of(this).get(MyViewModel.class);
-        mainPresenter=myViewModel.getMainPresenter();
+        myViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
+        mainPresenter = myViewModel.getMainPresenter();
         mainPresenter.setRow(getIntent().getIntExtra("row", 0));
         mainPresenter.setCol(getIntent().getIntExtra("col", 0));
         if (savedInstanceState == null) {
@@ -109,10 +109,10 @@ public class TableActivity extends AppCompatActivity{
                 TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.MATCH_PARENT));
         editTextList = new ArrayList<EditText>();
-        int count=0;
+        int count = 0;
         for (int i = 0; i < mainPresenter.getRow(); i++) {
             TableRow tableRow = new TableRow(this);
-            tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.MATCH_PARENT));
+            tableRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
             simple_game.addView(tableRow);
             TableLayout.LayoutParams layoutParams = new TableLayout.LayoutParams();
             layoutParams.setMargins(25, 5, 25, 5);
@@ -121,7 +121,7 @@ public class TableActivity extends AppCompatActivity{
                 final EditText editText = new EditText(this);
                 editText.setTag(new Position(i, j));
                 editText.setId(count);
-                count=count+1;
+                count = count + 1;
                 RxTextView.textChanges(editText).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<CharSequence>() {
                     @Override
                     public void accept(CharSequence charSequence) throws Exception {
@@ -133,8 +133,7 @@ public class TableActivity extends AppCompatActivity{
                         } catch (NumberFormatException n) {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                 editText.getBackground().setColorFilter(getColor(R.color.red), PorterDuff.Mode.SRC);
-                            }
-                            else{
+                            } else {
                                 editText.getBackground().setColorFilter(getResources().getColor(R.color.red), PorterDuff.Mode.SRC);
                             }
                         }
@@ -151,7 +150,7 @@ public class TableActivity extends AppCompatActivity{
         linearLayout.addView(simple_game);
         linearLayout.addView(button_submit);
         scrollView.addView(linearLayout);
-       horizontalScrollView.addView(scrollView);
+        horizontalScrollView.addView(scrollView);
 
     }
 
@@ -166,7 +165,7 @@ public class TableActivity extends AppCompatActivity{
                     Toast.makeText(TableActivity.this, "Invalid Matrix.", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(TableActivity.this, ResultActivity.class);
-                    intent.putExtra("matrix",mainPresenter.getInt_matrix());
+                    intent.putExtra("matrix", mainPresenter.getInt_matrix());
                     startActivity(intent);
                 }
             }

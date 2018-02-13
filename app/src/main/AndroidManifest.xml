@@ -19,11 +19,13 @@
         <activity android:name="com.sujan.traverse.matrix.View.ResultActivity">
 
         </activity>
-        <activity android:name="com.sujan.traverse.matrix.View.TableActivity"
+        <activity
+            android:name="com.sujan.traverse.matrix.View.TableActivity"
             android:windowSoftInputMode="adjustPan">
 
         </activity>
-        <service android:name="com.sujan.traverse.matrix.Model.TraverseService"/>
+
+        <service android:name="com.sujan.traverse.matrix.Model.TraverseService" />
     </application>
 
 </manifest>

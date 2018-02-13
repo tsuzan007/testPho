@@ -8,10 +8,10 @@ import com.sujan.traverse.matrix.Model.HelperClass.Position;
  */
 
 public class MainPresenter implements PresenterOps {
-    private   String matrix[][];
-    private   int int_matrix[][];
-    private   int row = 0;
-    private   int col = 0;
+    private String matrix[][];
+    private int int_matrix[][];
+    private int row = 0;
+    private int col = 0;
 
     public String[][] getMatrix() {
         return matrix;

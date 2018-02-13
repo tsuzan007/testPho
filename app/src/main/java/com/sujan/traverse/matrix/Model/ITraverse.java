@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface ITraverse {
     List<String> traverse(int[][] matrix);
-    List<Position> getAdjPosition(int[][] matrix,int row, int col);
+
+    List<Position> getAdjPosition(int[][] matrix, int row, int col);
 
 }

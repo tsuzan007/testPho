@@ -1,12 +1,10 @@
 package com.sujan.traverse.matrix.Model;
 
-import com.sujan.traverse.matrix.Model.HelperClass.Matrix;
 import com.sujan.traverse.matrix.Model.HelperClass.Path;
 import com.sujan.traverse.matrix.Model.HelperClass.Position;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 /**
@@ -23,17 +21,17 @@ public class Traverse implements ITraverse {
     @Override
     public List<String> traverse(int[][] matrix) {
         int j = 0;
-        path=new Path("");
-        List<String> result=new ArrayList<>();
+        path = new Path("");
+        List<String> result = new ArrayList<>();
         for (int i = 0; i < MatrixTraverse.max_height; i++) {
-            findPath(matrix,i, j, 0, "");
+            findPath(matrix, i, j, 0, "");
 
         }
-        if(MatrixTraverse.resultCost==Integer.MAX_VALUE){
-            MatrixTraverse.resultCost=0;
+        if (MatrixTraverse.resultCost == Integer.MAX_VALUE) {
+            MatrixTraverse.resultCost = 0;
 
         }
-        result.add(MatrixTraverse.resultCost+"");
+        result.add(MatrixTraverse.resultCost + "");
         result.add("[" + path.getPath().replaceAll(",", " ").trim() + "]");
         return result;
     }
@@ -55,7 +53,7 @@ public class Traverse implements ITraverse {
         if (matrix[row][col] + currentCost < MatrixTraverse.MAX_COST) {
             currentPath += (row + 1) + ",";
             currentCost += matrix[row][col];
-            nextPosiList = getAdjPosition(matrix,row, col);
+            nextPosiList = getAdjPosition(matrix, row, col);
 
         } else {
             conditionMaxCost = true;
@@ -64,7 +62,7 @@ public class Traverse implements ITraverse {
         // sort the position
         if (nextPosiList != null) {
             for (Position p : nextPosiList) {
-                findPath(matrix,p.getX(), p.getY(), currentCost, currentPath);
+                findPath(matrix, p.getX(), p.getY(), currentCost, currentPath);
             }
         } else {
             // current set Finished
@@ -76,7 +74,7 @@ public class Traverse implements ITraverse {
                 } else if (path.getPath().length() < currentPath.length()) {
                     MatrixTraverse.resultCost = currentCost;
                     path.setPath(currentPath);
-                   conditonBreak = true;
+                    conditonBreak = true;
                 }
 
             } else if (currentPath.length() >= MatrixTraverse.max_width * 2 && conditonBreak) {
@@ -142,7 +140,6 @@ public class Traverse implements ITraverse {
         return list;
 
     }
-
 
 
 }

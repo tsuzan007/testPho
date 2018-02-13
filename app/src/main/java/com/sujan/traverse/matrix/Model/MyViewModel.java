@@ -1,7 +1,5 @@
 package com.sujan.traverse.matrix.Model;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.sujan.traverse.matrix.Presenter.MainPresenter;
@@ -17,9 +15,9 @@ public class MyViewModel extends ViewModel {
     private MainPresenter mainPresenter;
 
 
-    public MainPresenter getMainPresenter(){
-        if(mainPresenter==null){
-            mainPresenter=new MainPresenter();
+    public MainPresenter getMainPresenter() {
+        if (mainPresenter == null) {
+            mainPresenter = new MainPresenter();
 
         }
         return mainPresenter;

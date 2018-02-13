@@ -2,11 +2,10 @@ package com.sujan.traverse.matrix.HelperClassTest;
 
 import com.sujan.traverse.matrix.Model.HelperClass.Position;
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
-import org.junit.Test;
 
 /**
  * Created by macbookpro on 1/30/18.

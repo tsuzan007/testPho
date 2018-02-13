@@ -1,6 +1,5 @@
 package com.sujan.traverse.matrix.View;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +7,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.sujan.traverse.matrix.Model.MyViewModel;
 import com.sujan.traverse.matrix.Model.TraverseService;
-import com.sujan.traverse.matrix.Presenter.MainPresenter;
 import com.sujan.traverse.matrix.R;
 
 import org.greenrobot.eventbus.EventBus;
@@ -45,9 +42,9 @@ public class ResultActivity extends AppCompatActivity {
         super.onResume();
         if (result == null) {
             Intent i = getIntent();
-            int[][] matrix=(int[][])i.getSerializableExtra("matrix");
+            int[][] matrix = (int[][]) i.getSerializableExtra("matrix");
             Intent serviceIntent = new Intent(this, TraverseService.class);
-            serviceIntent.putExtra("matrix",matrix);
+            serviceIntent.putExtra("matrix", matrix);
             startService(serviceIntent);
         } else {
             progressBar.setVisibility(View.INVISIBLE);

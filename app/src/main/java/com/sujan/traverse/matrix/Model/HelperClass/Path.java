@@ -5,8 +5,8 @@ package com.sujan.traverse.matrix.Model.HelperClass;
  */
 
 public class Path implements PathCost {
-    private  String path;
-    private int cost=0;
+    private String path;
+    private int cost = 0;
 
     public Path(String path) {
         this.path = path;
@@ -27,7 +27,7 @@ public class Path implements PathCost {
 
     @Override
     public void setCost(int cost) {
-        this.cost=cost;
+        this.cost = cost;
 
     }
 }

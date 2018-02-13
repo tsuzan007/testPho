@@ -23,7 +23,7 @@ public class MatrixTest {
     private int width = 6;
 
     @Test
-    public void MatrixConstruct_NotNull(){
+    public void MatrixConstruct_NotNull() {
         Matrix matrix = new Matrix(null);
         assertNotNull(matrix);
     }

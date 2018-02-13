@@ -22,11 +22,10 @@ public class MatrixTraverseDataTest {
     ITraverse iTraverse;
 
 
-
     @Before
-    public void initialize(){
-        iMatrixValidation=new MatrixValidation();
-        iTraverse=new Traverse();
+    public void initialize() {
+        iMatrixValidation = new MatrixValidation();
+        iTraverse = new Traverse();
     }
 
     @Test
@@ -39,7 +38,7 @@ public class MatrixTraverseDataTest {
                 {3, 7, 2, 8, 6, 4}
         };
 
-        MatrixTraverse mat = new MatrixTraverse(sample1,iTraverse,iMatrixValidation);
+        MatrixTraverse mat = new MatrixTraverse(sample1, iTraverse, iMatrixValidation);
 
         List<String> trv = mat.traverse();
 
@@ -52,7 +51,7 @@ public class MatrixTraverseDataTest {
     public void traverseSecond() {
 
         int sample[][] = {{19, 10, 19, 10, 19}, {21, 23, 20, 19, 12}, {20, 12, 20, 11, 10}};
-        MatrixTraverse mat = new MatrixTraverse(sample,iTraverse,iMatrixValidation);
+        MatrixTraverse mat = new MatrixTraverse(sample, iTraverse, iMatrixValidation);
 
 
         List<String> trv = mat.traverse();
@@ -66,8 +65,7 @@ public class MatrixTraverseDataTest {
     public void traverseThird() {
         int sample[][] = {{5, 8, 5, 3, 5}};
 
-           MatrixTraverse mat = new MatrixTraverse(sample,iTraverse,iMatrixValidation);
-
+        MatrixTraverse mat = new MatrixTraverse(sample, iTraverse, iMatrixValidation);
 
 
         List<String> trv = mat.traverse();
@@ -83,7 +81,7 @@ public class MatrixTraverseDataTest {
                 {5},
                 {3},
                 {5}};
-        MatrixTraverse mat = new MatrixTraverse(sample,iTraverse,iMatrixValidation);
+        MatrixTraverse mat = new MatrixTraverse(sample, iTraverse, iMatrixValidation);
 
 
         List<String> trv = mat.traverse();
@@ -99,7 +97,7 @@ public class MatrixTraverseDataTest {
         int sample[][] = {{69, 10, 19, 10, 19},
                 {51, 23, 20, 19, 12},
                 {60, 12, 20, 11, 10}};
-        MatrixTraverse mat = new MatrixTraverse(sample,iTraverse,iMatrixValidation);
+        MatrixTraverse mat = new MatrixTraverse(sample, iTraverse, iMatrixValidation);
 
 
         List<String> trv = mat.traverse();
@@ -113,7 +111,7 @@ public class MatrixTraverseDataTest {
         int sample[][] = {{60, 3, 3, 6},
                 {6, 3, 7, 9},
                 {5, 6, 8, 3}};
-        MatrixTraverse mat = new MatrixTraverse(sample,iTraverse,iMatrixValidation);
+        MatrixTraverse mat = new MatrixTraverse(sample, iTraverse, iMatrixValidation);
 
 
         List<String> trv = mat.traverse();
@@ -129,7 +127,7 @@ public class MatrixTraverseDataTest {
                 {-5, 2, 4, 10},
                 {3, -2, 6, 10},
                 {6, -1, -2, 10}};
-        MatrixTraverse mat = new MatrixTraverse(sample,iTraverse,iMatrixValidation);
+        MatrixTraverse mat = new MatrixTraverse(sample, iTraverse, iMatrixValidation);
 
 
         List<String> trv = mat.traverse();
@@ -146,7 +144,7 @@ public class MatrixTraverseDataTest {
                 {51, 51},
                 {5, 5}
         };
-        MatrixTraverse mat = new MatrixTraverse(sample,iTraverse,iMatrixValidation);
+        MatrixTraverse mat = new MatrixTraverse(sample, iTraverse, iMatrixValidation);
 
 
         List<String> trv = mat.traverse();
@@ -165,7 +163,7 @@ public class MatrixTraverseDataTest {
                 {5, 5, 51}
         };
 
-        MatrixTraverse mat = new MatrixTraverse(sample,iTraverse,iMatrixValidation);
+        MatrixTraverse mat = new MatrixTraverse(sample, iTraverse, iMatrixValidation);
 
 
         List<String> trv = mat.traverse();
@@ -181,7 +179,7 @@ public class MatrixTraverseDataTest {
                 {2, 2, 2, 2, 2, 2, 2, 2, 2, 2}
         };
 
-        MatrixTraverse mat = new MatrixTraverse(sample,iTraverse,iMatrixValidation);
+        MatrixTraverse mat = new MatrixTraverse(sample, iTraverse, iMatrixValidation);
 
 
         List<String> trv = mat.traverse();
@@ -193,11 +191,11 @@ public class MatrixTraverseDataTest {
     @Test
     public void traverse_ReturnInvalidMatrix() {
         int sample[][] = {
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {2, 2, 2, 2, 2, 2, 2, 2, 2, 2,2, 2, 2, 2, 2, 2, 2, 2, 2, 2,2, 2, 2, 2, 2, 2, 2, 2, 2, 2}
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}
         };
 
-        MatrixTraverse mat = new MatrixTraverse(sample,iTraverse,iMatrixValidation);
+        MatrixTraverse mat = new MatrixTraverse(sample, iTraverse, iMatrixValidation);
 
 
         List<String> trv = mat.traverse();
@@ -205,7 +203,6 @@ public class MatrixTraverseDataTest {
         assertEquals("Invalid Matrix", trcost);
 
     }
-
 
 
 }

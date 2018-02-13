@@ -1,10 +1,8 @@
 package com.sujan.traverse.matrix.ModelTest;
 
-import org.junit.Test;
-import org.mockito.Mock;
-
-import com.sujan.traverse.matrix.Model.IMatrixValidation;
 import com.sujan.traverse.matrix.Model.MatrixValidation;
+
+import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

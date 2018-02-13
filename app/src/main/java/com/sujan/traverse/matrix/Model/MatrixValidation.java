@@ -8,6 +8,7 @@ public class MatrixValidation implements IMatrixValidation {
 
     /**
      * Validate if the given input is matrix of mxn form.
+     *
      * @param mgrid matrix to test
      * @return True if input is a matrix, false if input is not in mxn form.
      */
@@ -25,15 +26,16 @@ public class MatrixValidation implements IMatrixValidation {
 
     /**
      * Validate if given input is under the limit
-     * @param width the width of the matrix
-     * @param height the height of the matrix
-     * @param widthlimit the width-limit of the matrix
+     *
+     * @param width       the width of the matrix
+     * @param height      the height of the matrix
+     * @param widthlimit  the width-limit of the matrix
      * @param heightlimit the height-limit of the matrix
      * @return True and false.
      */
     @Override
     public boolean isArrayUnderLimit(int width, int height, int widthlimit, int heightlimit) {
-        if ((height <heightlimit) && (width < widthlimit)) {
+        if ((height < heightlimit) && (width < widthlimit)) {
             return true;
         } else {
             return false;
@@ -42,8 +44,9 @@ public class MatrixValidation implements IMatrixValidation {
 
     /**
      * Validate if cost is less than the limit
+     *
      * @param costPath the total cost to traverse
-     * @param limit the maximum cost.
+     * @param limit    the maximum cost.
      * @return "YES" if total cost is under limit, "No" if not.
      */
     @Override

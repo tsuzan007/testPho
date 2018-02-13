@@ -19,7 +19,7 @@ import android.widget.TableRow;
 import android.widget.Toast;
 
 import com.jakewharton.rxbinding2.widget.RxTextView;
-import com.sujan.traverse.matrix.HelperClass.Position;
+import com.sujan.traverse.matrix.Model.HelperClass.Position;
 import com.sujan.traverse.matrix.Model.MyViewModel;
 import com.sujan.traverse.matrix.Presenter.MainPresenter;
 import com.sujan.traverse.matrix.R;

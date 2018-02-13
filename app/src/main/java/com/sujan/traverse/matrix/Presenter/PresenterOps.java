@@ -1,6 +1,6 @@
 package com.sujan.traverse.matrix.Presenter;
 
-import com.sujan.traverse.matrix.HelperClass.Position;
+import com.sujan.traverse.matrix.Model.HelperClass.Position;
 
 /**
  * Created by macbookpro on 2/2/18.

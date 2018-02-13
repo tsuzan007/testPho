@@ -1,6 +1,6 @@
 package com.sujan.traverse.matrix.HelperClassTest;
 
-import com.sujan.traverse.matrix.HelperClass.Position;
+import com.sujan.traverse.matrix.Model.HelperClass.Position;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

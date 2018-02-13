@@ -1,6 +1,6 @@
 package com.sujan.traverse.matrix.HelperClassTest;
 
-import com.sujan.traverse.matrix.HelperClass.Path;
+import com.sujan.traverse.matrix.Model.HelperClass.Path;
 
 import org.junit.Test;
 

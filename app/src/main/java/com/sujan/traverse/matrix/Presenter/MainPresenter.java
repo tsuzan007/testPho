@@ -1,7 +1,7 @@
 package com.sujan.traverse.matrix.Presenter;
 
 
-import com.sujan.traverse.matrix.HelperClass.Position;
+import com.sujan.traverse.matrix.Model.HelperClass.Position;
 
 /**
  * Created by macbookpro on 2/2/18.
@@ -71,8 +71,8 @@ public class MainPresenter implements PresenterOps {
 
     @Override
     public void initMatrices() {
-        matrix = new String[this.row][this.col];
-        int_matrix = new int[this.row][this.col];
+        matrix = new String[row][col];
+        int_matrix = new int[row][col];
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 matrix[i][j] = "";

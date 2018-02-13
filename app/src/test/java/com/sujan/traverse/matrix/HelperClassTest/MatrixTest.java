@@ -1,10 +1,11 @@
 package com.sujan.traverse.matrix.HelperClassTest;
 
-import com.sujan.traverse.matrix.HelperClass.Matrix;
+import com.sujan.traverse.matrix.Model.HelperClass.Matrix;
 
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 /**
@@ -20,6 +21,12 @@ public class MatrixTest {
     };
     private int height = 5;
     private int width = 6;
+
+    @Test
+    public void MatrixConstruct_NotNull(){
+        Matrix matrix = new Matrix(null);
+        assertNotNull(matrix);
+    }
 
     @Test
     public void MatrixConstruct_ReturnsMatrix() {

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "866204608266",
+    "firebase_url": "https://photon-1401d.firebaseio.com",
+    "project_id": "photon-1401d",
+    "storage_bucket": "photon-1401d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866204608266:android:bc94550e394ee1b2",
+        "android_client_info": {
+          "package_name": "com.sujan.traverse.matrix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866204608266-bscbqta8gktterkj84cd69ch2f0nc4vd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sujan.traverse.matrix",
+            "certificate_hash": "d4ef689828eb6a3891514228366cac5af1039d85"
+          }
+        },
+        {
+          "client_id": "866204608266-omr7gbg49oia958hp7ffbrivjtvivdg9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk9-hVT9tOJ3JKE-_A8powRs2LxHMDcBA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866204608266-omr7gbg49oia958hp7ffbrivjtvivdg9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

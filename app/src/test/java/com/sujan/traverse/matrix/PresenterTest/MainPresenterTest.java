@@ -1,16 +1,18 @@
 package com.sujan.traverse.matrix.PresenterTest;
 
-import com.sujan.traverse.matrix.HelperClass.Position;
+import com.sujan.traverse.matrix.Model.HelperClass.Position;
 import com.sujan.traverse.matrix.Presenter.MainPresenter;
+import com.sujan.traverse.matrix.Presenter.PresenterOps;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by macbookpro on 2/2/18.
@@ -67,4 +69,14 @@ public class MainPresenterTest {
 
 
     }
+
+    @Test
+    public void getRow_ReturnsRow(){
+        Assert.assertEquals(mainPresenter.getRow(),2);
+    }
+    @Test
+    public void getCol_ReturnsCol(){
+        Assert.assertEquals(mainPresenter.getCol(),2);
+    }
+
 }
